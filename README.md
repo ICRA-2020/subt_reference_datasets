@@ -76,31 +76,43 @@ cd other/subt_reference_datasets/
 Then follow the Native Installation instructions below.  
 
 ### Native Installation:  
-**Base Workspace Installation: Currently supported**  
+**Analysis Workspace Installation: Currently supported**  
 > Note: `YOUR_ROS_CATKIN_WORKSPACE` is typically `/opt/ros/melodic` if you are not extending another workspace.  
 ```
 cd subt_reference_datasets
-wstool update -t base_ws/src
-rosdep install -y --from-paths base_ws/src --ignore-src --rosdistro melodic
-cd base_ws
+wstool update -t analysis_ws/src
+rosdep install -y -r --from-paths base_ws/src --ignore-src --rosdistro melodic
+cd analysis_ws
 catkin init
 catkin config --extend YOUR_ROS_CATKIN_WORKSPACE --merge-devel --cmake-args -DCMAKE_BUILD_TYPE=Release
 catkin build
 ```
 
-**Kimera Workspace Installation: Currently unsupported**  
+**Base Workspace Installation: Currently supported**  
+> Note: `YOUR_ROS_CATKIN_WORKSPACE` is typically `/opt/ros/melodic` if you are not extending another workspace.  
+```
+cd subt_reference_datasets
+wstool update -t base_ws/src
+rosdep install -y -r --from-paths base_ws/src --ignore-src --rosdistro melodic
+cd base_ws
+catkin init
+catkin config --extend ../analysis_ws/devel --merge-devel --cmake-args -DCMAKE_BUILD_TYPE=Release
+catkin build
+```
+
+**Kimera Workspace Installation: Currently supported**  
 ```
 cd subt_reference_datasets
 wstool update -t kimera_ws/src
-. apply_required_build_patches.sh
-rosdep install -y --from-paths kimera_ws/src --ignore-src --rosdistro melodic
+rosdep install -y -r --from-paths kimera_ws/src --ignore-src --rosdistro melodic
 cd kimera_ws
 catkin init
-catkin config --extend ../base_ws/devel --merge-devel --cmake-args -DCMAKE_BUILD_TYPE=Release
+catkin config --extend ../analysis_ws/devel --merge-devel --cmake-args -DCMAKE_BUILD_TYPE=Release
 catkin build
 ```
 
 ### Experimentation
+Source the workspace containing the algorithms for experimentation: i.e. `. ~/subt_reference_datasets/base_ws/devel/setup.bash` or `. ~/subt_reference_datasets/kimera_ws/devel/setup.bash`
 Go to the directory where you have placed the tunnel circuit bag files, in this case the bags are in the `data` folder sorted into `tunnel_ckt` and `urban_ckt` folders
 ```
 cd ~/data/tunnel_ckt

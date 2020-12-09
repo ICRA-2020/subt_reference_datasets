@@ -1,11 +1,7 @@
-apriltag
-apriltag_ros
+abseil-cpp
 cartographer_ws
 cartographer_ros
 msckf_vio
-multisense-ros
 orb_slam_2_ros
-realsense-ros
 vins_fusion
 viso2
-

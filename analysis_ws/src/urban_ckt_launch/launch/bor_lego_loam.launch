@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launch>
+  <arg name="name" />
+  <arg name="lidar_topic" default="multi_lidar_cloud"/>
+  <arg name="base_frame" default="base"/>
+
+    
+    <!--- Sim Time -->
+
+    <!--- TF -->
+    <node pkg="tf" type="static_transform_publisher" name="camera_init_to_map"  args="0 0 0 1.570795   0        1.570795 $(arg name)/map    /camera_init 10" />
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_camera" args="0 0 0 -1.570795 -1.570795 0        /camera /base_link   10" />
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_base" args="0 0 0 0 0 0        /base_link $(arg name)/base  10" />
+
+    <!--- LeGO-LOAM -->    
+      <!--    <node pkg="apply_imu_calibration" type="apply_imu_calibration_node" name="apply_imu_calibration_node">
+      <param name="offset_r" value="0.0018526535"/>
+      <param name="offset_p" value="-0.017502"/>
+      <param name="offset_y" value="-0.0004286535"/>
+      <param name="output_frame_id" value="$(arg name)/imu_link"/>
+    </node>
+    <node pkg="incremental_assembler" type="incremental_assembler" name="multicloud_assembler" output="screen">
+      <remap from="velodyne_points" to="lidar_points"/>
+      <remap from="aux_cloud" to="multisense/lidar_points2"/>
+      <param name="fixed_frame" value="odom" />
+      <param name="output_frame" value="base_link" />
+      <param name="x_bound" value="50.0" />
+      <param name="y_bound" value="50.0" />
+      <param name="z_bound" value="50.0" />
+      <param name="x_self_min" value="0.5"/>
+      <param name="y_self_min" value="0.5"/>
+      <param name="xn_self_min" value="0.2"/>
+      <param name="z_self_min" value="0.8"/>
+      <param name="resolution" value="0.025" />
+      <param name="downsample" value="3" />
+      <param name="trigger_time" value="0.2" />
+
+      <param name="remove_ground_plane" value="false"/>
+      <param name="ground_filter_distance" value="0.1"/>
+
+      <param name="c_x_bound" value="10.0" />
+      <param name="c_y_bound" value="10.0" />
+      <param name="c_z_bound" value="3.0" />
+
+      <param name="scan_history_secs" value="2.5"/>
+      <param name="continuous_cloud_publish_secs" value="0.2"/>
+      <param name="platform" value="$(arg name)"/>
+   </node>
+    <node pkg="omnimapper_tools" name="cloud_destamper" type="destamp_point_clouds">
+      <remap from="assembled_cloud" to="fast_assembled_cloud"/>
+      <remap from="destamped_assembled_cloud" to="multi_lidar_cloud"/>
+    </node>
+      -->
+    <node pkg="lego_loam_bor" type="lego_loam_bor"    name="lego_loam"    output="screen">
+      <rosparam file="$(find urban_ckt_launch)/config/loam_config.yaml" command="load"/>
+       <remap from="imu/data" to="imu_repub"/>
+       <remap from="/$(arg name)/lidar_points" to="/$(arg name)/$(arg lidar_topic)"/>
+       <param name="base_link_frame" value="$(arg name)/base" type="string" />
+       <param name="camera_init_frame" value="camera_init" type="string" />
+       <param name="camera_frame" value="camera" type="string" />
+       <param name="laser_odom_frame" value="laser_odom" type="string" />
+       <param name="map_frame" value="map" type="string" />
+       <param name="aft_mapped_frame" value="aft_mapped" type="string" />
+    </node>
+</launch>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launch>
+  <arg name="name" />
+  <arg name="lidar_topic" default="ouster/points"/>
+  <arg name="base_frame" default="base"/>
+
+    
+    <!--- Sim Time -->
+    <param name="/use_sim_time" value="false" />
+
+    <!--- TF -->
+    <node pkg="tf" type="static_transform_publisher" name="camera_init_to_map"  args="0 0 0 1.570795   0        1.570795 /map    /camera_init 10" />
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_camera" args="0 0 0 -1.570795 -1.570795 0        /camera /base_link   10" />
+
+    <node pkg="apply_imu_calibration" type="apply_imu_calibration_node" name="apply_imu_calibration_node">
+      <param name="offset_r" value="0.0018526535"/>
+      <param name="offset_p" value="-0.017502"/>
+      <param name="offset_y" value="-0.0004286535"/>
+      <param name="output_frame_id" value="$(arg name)/imu_link"/>
+
+    </node>
+    <!--- LeGO-LOAM -->    
+    <node pkg="sc_lego_loam" type="imageProjection"    name="imageProjection"    output="screen">
+      <remap from="/os1_points" to="$(arg lidar_topic)"/>
+    </node>
+    <node pkg="sc_lego_loam" type="featureAssociation" name="featureAssociation" output="screen">
+      <remap from="/imu/data" to="/$(arg name)/imu_repub"/>
+    </node>
+    <node pkg="sc_lego_loam" type="mapOptmization"     name="mapOptmization"     output="screen">
+      <remap from="/os1_points" to="$(arg lidar_topic)"/>
+      <remap from="/imu/data" to="/$(arg name)/imu_repub"/>
+    </node>
+    <node pkg="sc_lego_loam" type="transformFusion"    name="transformFusion"    output="screen"/>
+
+</launch>

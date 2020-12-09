@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launch>
+  <arg name="bag"/>
+  <arg name="name" default="sherman"/>
+  <arg name="rate" default="1.0"/>
+  <arg name="bag_out" default="true"/>
+
+  <param name="use_sim_time" value="true"/>
+  <node pkg="rosbag" type="play" name="bagplay" required="true" args="$(env PWD)/$(arg bag) --rate $(arg rate) --clock --topics /$(arg name)/boson_forward/camera_info  /$(arg name)/boson_forward/image_raw/compressed /$(arg name)/boson_up/camera_info /$(arg name)/boson_up/image_raw/compressed /$(arg name)/cmd_vel /$(arg name)/husky_velocity_controller/odom /$(arg name)/imu/data /$(arg name)/joy /$(arg name)/mac80211/scan /$(arg name)/multisense/calibration/device_info /$(arg name)/multisense/calibration/raw_cam_cal /$(arg name)/multisense/calibration/raw_cam_config /$(arg name)/multisense/calibration/raw_lidar_cal /$(arg name)/multisense/depth/camera_info /$(arg name)/multisense/depth /$(arg name)/multisense/depth/compressedDepth /$(arg name)/multisense/imu/accelerometer /$(arg name)/multisense/imu/accelerometer_vector /$(arg name)/multisense/imu/gyroscope /$(arg name)/multisense/imu/gyroscope_vector /$(arg name)/multisense/imu/imu_data /$(arg name)/multisense/imu/magnetometer /$(arg name)/multisense/imu/magnetometer_vector /$(arg name)/multisense/left/camera_info /$(arg name)/multisense/left/image_rect_color/camera_info /$(arg name)/multisense/left/image_rect_color/compressed /$(arg name)/multisense/lidar_points2 /$(arg name)/multisense/pps /$(arg name)/multisense/right/camera_info /$(arg name)/multisense/right/image_rect/camera_info /$(arg name)/multisense/right/image_rect/compressed /$(arg name)/multisense/stamped_pps /$(arg name)/multisense/status /$(arg name)/lidar_points /$(arg name)/odom /$(arg name)/ouster_driver/imu_packets /$(arg name)/ouster_driver/lidar_packets /$(arg name)/scd30 /gvrbot_power_data /$(arg name)/raw_odom  /diagnostics_agg /tf /tf_static" launch-prefix="xterm -e"/>
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lego_loam_bor)/launch/test.rviz" />
+  <node pkg="static_transform_mux" type="static_transform_mux" name="static_transform_mux"/>
+  <group ns="$(arg name)">
+    <param name="tf_prefix" value="$(arg name)"/>
+    <node pkg="apply_imu_calibration" type="apply_imu_calibration_node" name="apply_imu_calibration_node">
+      <param name="offset_r" value="0.0018526535"/>
+      <param name="offset_p" value="-0.017502"/>
+      <param name="offset_y" value="-0.0004286535"/>
+      <param name="output_frame_id" value="$(arg name)/imu_link"/>
+    </node>
+    <node pkg="incremental_assembler" type="incremental_assembler" name="multicloud_assembler" output="screen">
+      <remap from="velodyne_points" to="lidar_points"/>
+      <remap from="aux_cloud" to="multisense/lidar_points2"/>
+      <param name="fixed_frame" value="odom" />
+      <param name="output_frame" value="base" />
+      <param name="x_bound" value="50.0" />
+      <param name="y_bound" value="50.0" />
+      <param name="z_bound" value="50.0" />
+      <param name="x_self_min" value="0.5"/>
+      <param name="y_self_min" value="0.5"/>
+      <param name="xn_self_min" value="0.2"/>
+      <param name="z_self_min" value="0.8"/>
+      <param name="resolution" value="0.025" />
+      <param name="downsample" value="3" />
+      <param name="trigger_time" value="0.2" />
+
+      <param name="remove_ground_plane" value="false"/>
+      <param name="ground_filter_distance" value="0.1"/>
+
+      <param name="c_x_bound" value="10.0" />
+      <param name="c_y_bound" value="10.0" />
+      <param name="c_z_bound" value="3.0" />
+
+      <param name="scan_history_secs" value="2.5"/>
+      <param name="continuous_cloud_publish_secs" value="0.2"/>
+      <param name="platform" value="$(arg name)"/>
+    </node>
+    <node pkg="omnimapper_tools" name="cloud_destamper" type="destamp_point_clouds">
+      <remap from="assembled_cloud" to="fast_assembled_cloud"/>
+      <remap from="destamped_assembled_cloud" to="multi_lidar_cloud"/>
+    </node>
+  </group>
+
+  <group if="$(arg bag_out)">
+    <node pkg="rosbag" type="record" name="record" args="-O $(env PWD)/$(arg bag).out.bag /$(arg name)/imu/data /$(arg name)/imu_repub /$(arg name)/lidar_points /$(arg name)/mac80211/scan /$(arg name)/multi_lidar_cloud /$(arg name)/multisense/calibration/device_info /$(arg name)/multisense/calibration/raw_cam_cal /$(arg name)/multisense/calibration/raw_cam_config /$(arg name)/multisense/calibration/raw_lidar_cal /$(arg name)/multisense/depth /$(arg name)/multisense/depth/camera_info /$(arg name)/multisense/imu/accelerometer /$(arg name)/multisense/imu/accelerometer_vector /$(arg name)/multisense/imu/gyroscope /$(arg name)/multisense/imu/gyroscope_vector /$(arg name)/multisense/imu/imu_data /$(arg name)/multisense/imu/magnetometer /$(arg name)/multisense/imu/magnetometer_vector /$(arg name)/multisense/left/camera_info /$(arg name)/multisense/left/image_rect_color/camera_info /$(arg name)/multisense/left/image_rect_color/compressed /$(arg name)/multisense/lidar_points2 /$(arg name)/multisense/pps /$(arg name)/multisense/right/camera_info /$(arg name)/multisense/right/image_rect/camera_info /$(arg name)/multisense/right/image_rect/compressed /$(arg name)/multisense/stamped_pps /$(arg name)/multisense/status /$(arg name)/raw_odom /$(arg name)/scan /$(arg name)/scd30 /tf /tf_static"/>
+  </group>
+</launch>

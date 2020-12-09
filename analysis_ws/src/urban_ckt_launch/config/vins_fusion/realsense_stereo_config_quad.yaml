@@ -1,0 +1,57 @@
+%YAML:1.0
+
+#common parameters
+#support: 1 imu 1 cam; 1 imu 2 cam: 2 cam; 
+imu: 1 
+num_of_cam: 2  
+
+imu_topic: "/interpolate_imu/imu"
+image0_topic: "/realsense/infra1/image_rect_raw"
+image1_topic: "/realsense/infra2/image_rect_raw"
+output_path: "/tmp/"
+
+cam0_calib: "realsense-camera-left.yaml"
+cam1_calib: "realsense-camera-right.yaml"
+image_width: 640
+image_height: 480
+   
+
+# Extrinsic parameter between IMU and Camera.
+estimate_extrinsic: 1   # 0  Have an accurate extrinsic parameters. We will trust the following imu^R_cam, imu^T_cam, don't change it.
+                        # 1  Have an initial guess about extrinsic parameters. We will optimize around your initial guess.
+
+## this is definitely incorrect
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [0.009192845466667487, -0.9999201639392753, 0.008669333300708348, 0.004003330778893633,
+          0.005608539670880819, -0.00861800459189016, -0.9999471357424922, 0.004032293759492885,
+          0.9999420162564356, 0.009240981793454561, 0.005528867922722724, -0.013822916471822447,
+          0.0, 0.0, 0.0, 1.0]
+
+## this is definitely incorrect
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [0.009109389573161014, -0.9999198158210081, 0.008796644251427843, -0.04603910779969506,
+          0.005661641680209273, -0.008745294003956017, -0.9999457313505917, 0.003985427819330376,
+          0.9999424807633137, 0.009158698666631826, 0.005581523416105516, -0.014059848124890202,
+          0.0, 0.0, 0.0, 1.0]
+
+#Multiple thread support
+multiple_thread: 1
+
+#feature traker paprameters
+max_cnt: 150            # max feature number in feature tracking
+min_dist: 30            # min distance between two features 
+freq: 10                # frequence (Hz) of publish tracking result. At least 10Hz for good estimation. If set 0, the frequence will be same as raw image 
+F_threshold: 1.0        # ransac threshold (pixel)
+show_track: 1           # publish tracking image as topic
+flow_back: 1            # perform forward and backward optical flow to improve feature tracking accuracy
+
+#optimization parameters
+max_solver_time: 0.04  # max solver itration time (ms), to guarantee real time
+max_num_iterations: 8   # max solver itrations, to guarantee real time
+keyframe_parallax: 10.0 # keyframe selection threshold (pixel)

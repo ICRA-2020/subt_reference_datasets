@@ -5,6 +5,7 @@ disparity_image_proc
 gflags_catkin
 glog_catkin
 gtsam
+image_undistort
 Kimera-RPGO
 kimera_rviz_markers
 Kimera-VIO

@@ -1,0 +1,2 @@
+#!/bin/bash
+--imu_preintegration_type=0

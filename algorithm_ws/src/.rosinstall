@@ -1,21 +1,24 @@
 - git:
-    local-name: abseil-cpp
-    uri: https://github.com/abseil/abseil-cpp.git
-- git:
     local-name: cartographer_ws
     uri: https://github.com/googlecartographer/cartographer.git
+    version: fdcf0eb0df72b2eb7ae30c08c873b5ab2b855239
 - git:
     local-name: cartographer_ros
     uri: https://github.com/googlecartographer/cartographer_ros.git
+    version: 2325bde3d87527253987863571f6f4d635012a9c
 - git:
     local-name: msckf_vio
     uri: https://github.com/KumarRobotics/msckf_vio.git
+    version: e3a39a95b57da376924aa22b46637b60f68f504c
 - git:
     local-name: orb_slam_2_ros
     uri: https://github.com/appliedAI-Initiative/orb_slam_2_ros.git
+    version: 95c9e23268cb5f8eb3057948c4ace4d088e9a539
 - git:
     local-name: vins_fusion
     uri: https://github.com/HKUST-Aerial-Robotics/VINS-Fusion.git
+    version: 0c3206941410723b8c62b7b0c6a6189b38ae7d99
 - git:
     local-name: viso2
     uri: https://github.com/srv/viso2.git
+    version: 9ec5d539288fec1bfcb4326a5ff78862e525ae9f

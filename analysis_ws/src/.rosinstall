@@ -1,6 +1,8 @@
 - git:
     local-name: multisense-ros
     uri: https://github.com/carnegierobotics/multisense_ros.git
+    version: 2ec57e2c718b96527d9b8df56d64b7894e930077
 - git:
     local-name: realsense-ros
     uri: https://github.com/IntelRealSense/realsense-ros.git
+    version: fbbb1a7afd7d907050f0444b2d02849323bedeea

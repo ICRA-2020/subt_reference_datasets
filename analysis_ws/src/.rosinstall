@@ -1,10 +1,4 @@
 - git:
-    local-name: apriltag
-    uri: https://github.com/AprilRobotics/apriltag.git
-- git:
-    local-name: apriltag_ros
-    uri: https://github.com/AprilRobotics/apriltag_ros.git
-- git:
     local-name: multisense-ros
     uri: https://github.com/carnegierobotics/multisense_ros.git
 - git:

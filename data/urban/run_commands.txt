@@ -1,0 +1,57 @@
+UGV:
+  Alpha 1:
+    # Cartographer Odom:
+    roslaunch urban_ckt_launch remap.launch bag:=a_lvl_1.bag cartographer:=true noodom:=true odom_mode:=odom odom_config_1:=true course:=alpha config:=2 rviz:=false interval:=0.2 initialize_flat:=true multisense:=false
+    
+    # Cartographer No Odom:
+    roslaunch urban_ckt_launch remap.launch bag:=a_lvl_1.bag cartographer:=true noodom:=true odom_mode:=imu odom_config_1:=true course:=alpha config:=2 rviz:=false initialize_flat:=true multisense:=false
+  
+    # Odom
+    roslaunch urban_ckt_launch remap.launch bag:=a_lvl_1.bag odom_only:=true course:=alpha config:=2 rviz:=false initialize_flat:=true
+  
+  Alpha 2:
+    # Cartographer Odom:
+    roslaunch urban_ckt_launch remap.launch bag:=a_lvl_2.bag cartographer:=true noodom:=true odom_mode:=odom odom_config_2:=true course:=alpha config:=2 rviz:=false interval:=0.1 start:=10 initialize_flat:=true multisense:=false
+    
+    # Cartographer No Odom:
+    roslaunch urban_ckt_launch remap.launch bag:=a_lvl_2.bag cartographer:=true noodom:=true odom_mode:=imu odom_config_2:=true course:=alpha config:=2 rviz:=false initialize_flat:=true multisense:=false
+  
+    # Odom
+    roslaunch urban_ckt_launch remap.launch bag:=a_lvl_2.bag odom_only:=true course:=alpha config:=2 rviz:=false initialize_flat:=true
+  
+  Beta 1:
+    # Cartographer Odom:
+    roslaunch urban_ckt_launch remap.launch bag:=b_lvl_1.bag cartographer:=true noodom:=true odom_mode:=odom odom_config_2:=true course:=beta config:=2 rviz:=false interval:=0.2 start:=3 initialize_flat:=true multisense:=false
+    
+    # Cartographer No Odom:
+    roslaunch urban_ckt_launch remap.launch bag:=b_lvl_1.bag cartographer:=true noodom:=true odom_mode:=imu odom_config_2:=true course:=beta config:=2 rviz:=false start:=3 initialize_flat:=true multisense:=false
+  
+    # Odom
+    roslaunch urban_ckt_launch remap.launch bag:=b_lvl_1.bag odom_only:=true course:=beta config:=2 rviz:=false initialize_flat:=true
+  
+  Beta 2:
+    # Odom
+    roslaunch urban_ckt_launch remap.launch bag:=b_lvl_2.bag odom_only:=true course:=beta config:=2 rviz:=false initialize_flat:=true
+  
+UAV:
+  Alpha 1:
+    # ORBSLAM2
+    roslaunch urban_ckt_launch uav.launch bag:=a_lvl_1_uav.bag orbslam:=true course:=alpha config:=2 rviz:=false
+    
+    # MSCKF
+    roslaunch urban_ckt_launch uav.launch bag:=a_lvl_1_uav.bag msckf:=true course:=alpha config:=2 rviz:=false
+
+    # Kimera
+    roslaunch urban_ckt_launch uav.launch bag:=a_lvl_1_uav.bag kimera:=true course:=alpha config:=2 rviz:=false
+
+  Beta 2:
+    # ORBSLAM2
+    roslaunch urban_ckt_launch uav.launch bag:=b_lvl_1_uav.bag start:=145 orbslam:=true course:=beta config:=2 rviz:=false
+    
+    # MSCKF
+    roslaunch urban_ckt_launch uav.launch bag:=b_lvl_1_uav.bag start:=145 msckf:=true course:=beta config:=2 rviz:=false
+
+    # Kimera
+    roslaunch urban_ckt_launch uav.launch bag:=b_lvl_1_uav.bag start:=145 kimera:=true course:=beta config:=2 rviz:=false
+
+

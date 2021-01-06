@@ -1,0 +1,13 @@
+fiducial_4 1566245567.809743 84.166062 290.917015 chinook/multisense/left_camera_optical_frame -1.828457 0.074294 2.395636 chinook/base_link 2.610636 1.863457 0.473706
+fiducial_5 1566245562.309785 546.284376 45.164552 chinook/multisense/left_camera_optical_frame 0.164736 -1.968159 5.032387 chinook/base_link 5.247387 -0.129736 2.516159
+fiducial_6 1566245568.509853 933.766285 142.547428 chinook/multisense/left_camera_optical_frame 1.483916 -0.475146 2.121403 chinook/base_link 2.336403 -1.448916 1.023146
+fiducial_7 1566245611.820330 173.889060 203.705332 chinook/multisense/left_camera_optical_frame -1.087773 -0.212024 1.783507 chinook/base_link 1.998507 1.122773 0.760024
+extinguisher 1566245718.617009 125 260 chinook/multisense/left_camera_optical_frame -1.498890 -0.044743 2.164131 chinook/base_link 2.379131 1.533890 0.592743
+phone 1566245768.315203 345 363 chinook/multisense/left_camera_optical_frame -0.798345 0.399173 2.546005 chinook/base_link 2.761005 0.833345 0.148827
+backpack 1566245879.610330 806 232 chinook/multisense/left_camera_optical_frame 1.724063 -0.247177 3.586648 chinook/base_link 3.801648 -1.689063 0.795177
+survivor 1566245925.708855 160 339 chinook/multisense/left_camera_optical_frame -1.572974 0.287164 2.487685 chinook/base_link 2.702685 1.607974 0.260836
+drill 1566245979.206916 485 267 chinook/multisense/left_camera_optical_frame -0.279699 -0.033298 3.865289 chinook/base_link 4.080289 0.314699 0.581298
+survivor 1566246209.498413 443 292 chinook/multisense/left_camera_optical_frame -0.824427 0.196292 5.696559 chinook/base_link 5.911559 0.859427 0.351708
+phone 1566246377.891516 857 340 chinook/multisense/left_camera_optical_frame 1.272701 0.262254 2.238475 chinook/base_link 2.453475 -1.237701 0.285746
+backpack 1566246478.288170 557 308 chinook/multisense/left_camera_optical_frame 0.208399 0.250078 4.031936 chinook/base_link 4.246936 -0.173399 0.297922
+drill 1566246609.583424 610 335 chinook/multisense/left_camera_optical_frame 0.377399 0.286460 2.639143 chinook/base_link 2.854143 -0.342399 0.261540

@@ -1,0 +1,32 @@
+SR:
+  Route 1:
+    # Cartographer
+    roslaunch tunnel_ckt_launch remap.launch bag:=sr_B_route1.bag cartographer:=true noodom:=true course:=sr config:=B
+    
+    # ORBSLAM
+    roslaunch tunnel_ckt_launch remap.launch bag:=sr_B_route1.bag orbslam:=true course:=sr config:=B
+    
+    # Odom
+    roslaunch tunnel_ckt_launch remap.launch bag:=sr_B_route1.bag odom_only:=true course:=sr config:=B
+  
+  Route 2:
+    # Cartographer:
+    roslaunch tunnel_ckt_launch remap.launch bag:=sr_B_route2.bag cartographer:=true noodom:=true course:=sr config:=B
+    
+    # ORBSLAM:
+    roslaunch tunnel_ckt_launch remap.launch bag:=sr_B_route2.bag orbslam:=true course:=sr config:=B
+    
+    # Odom:
+    roslaunch tunnel_ckt_launch remap.launch bag:=sr_B_route2.bag odom_only:=true course:=sr config:=B
+    
+EX:
+  Route 1:
+    # Cartographer
+    roslaunch tunnel_ckt_launch remap.launch bag:=ex_B_route1.bag cartographer:=true noodom:=true course:=ex config:=B
+    
+    # ORBSLAM
+    roslaunch tunnel_ckt_launch remap.launch bag:=ex_B_route1.bag orbslam:=true course:=ex config:=B
+    
+    # Odom
+    roslaunch tunnel_ckt_launch remap.launch bag:=ex_B_route1.bag odom_only:=true course:=ex config:=B
+    

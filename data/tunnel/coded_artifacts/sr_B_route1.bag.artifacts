@@ -1,0 +1,12 @@
+fiducial_4 1566248117.513248 87.415399 294.663319 chinook/multisense/left_camera_optical_frame -1.702974 0.085149 2.246441 chinook/base_link 2.461441 1.737974 0.462851
+fiducial_5 1566248113.912685 483.204321 19.959789 chinook/multisense/left_camera_optical_frame -0.351541 -2.021363 4.637282 chinook/base_link 4.852282 0.386541 2.569363
+fiducial_6 1566248117.513248 974.756011 139.975430 chinook/multisense/left_camera_optical_frame 1.655679 -0.492629 2.149851 chinook/base_link 2.364851 -1.620679 1.040629
+fiducial_7 1566248157.424949 90.758020 182.824635 chinook/multisense/left_camera_optical_frame -1.243763 -0.256153 1.651946 chinook/base_link 1.866946 1.278763 0.804153
+extinguisher 1566248319.216998 364 187 chinook/multisense/left_camera_optical_frame -0.416201 -0.217037 1.482025 chinook/base_link 1.697025 0.451201 0.765037
+phone 1566248357.617974 363 355 chinook/multisense/left_camera_optical_frame -0.722119 0.365462 2.555668 chinook/base_link 2.770668 0.757119 0.182538
+backpack 1566248488.813405 669 261 chinook/multisense/left_camera_optical_frame 0.786437 -0.060921 3.214513 chinook/base_link 3.429513 -0.751437 0.608921
+backpack 1566248645.607114 578 262 chinook/multisense/left_camera_optical_frame 0.333634 -0.065418 3.796993 chinook/base_link 4.011993 -0.298634 0.613418
+backpack 1566249008.594168 420 177 chinook/multisense/left_camera_optical_frame -0.699977 -0.621475 3.796993 chinook/base_link 4.011993 0.734977 1.169475
+backpack 1566249094.991287 676 214 chinook/multisense/left_camera_optical_frame 0.920736 -0.358407 3.586648 chinook/base_link 3.801648 -0.885736 0.906407
+survivor 1566249202.687561 693 275 chinook/multisense/left_camera_optical_frame 1.587151 0.028683 5.549450 chinook/base_link 5.764450 -1.552151 0.519317
+extinguisher 1566249554.575611 516 259 chinook/multisense/left_camera_optical_frame -0.051057 -0.060341 2.694052 chinook/base_link 2.909052 0.086057 0.608341

@@ -1,0 +1,198 @@
+This quickstart guide outlines how to get started with the SubT Tunnel Circuit Dataset. For additional details, please refer to ICRA paper.
+
+This dataset was collected by the Army Research Laboratory on behalf of DARPA to support further system development via offline component testing in a relevant environment.
+
+The SubT tunnel dataset consists of three ROS bag files which were recorded on our Clearpath Husky robot during teleoperation within the Safety Research (SR) and Experimental (EX) courses. 
+At present, only Configuration B is represented in the dataset due to technical difficulties involved in the early collection process. The dataset consists of two runs in the SR course and one in the EX course.
+
+Bag files have been compressed by "rosbag compress" to reduce download time. They should still play back fine from their compressed state; however, if excessive stuttering or reduced performance is observed, the user can decompress the bag file to their full size (roughly 2x) with "rosbag decompress".
+
+Here is the output of rosbag info on one of the runs:
+
+path:         sr_B_route1.bag
+version:      2.0
+duration:     28:27s (1707s)
+start:        Aug 19 2019 16:55:11.46 (1566248111.46)
+end:          Aug 19 2019 17:23:38.58 (1566249818.58)
+size:         19.6 GB
+messages:     4400992
+compression:  bz2 [33208/33208 chunks; 44.56%]
+uncompressed: 43.7 GB @ 26.2 MB/s
+compressed:   19.5 GB @ 11.7 MB/s (44.56%)
+types:        diagnostic_msgs/DiagnosticArray   [60810da900de1dd6ddd437c3503511da]
+              geometry_msgs/Twist               [9f195f881246fdfa2798d1d3eebca84a]
+              geometry_msgs/Vector3Stamped      [7b324c7325e683bf02a9b14b01090ec7]
+              mac80211_msgs/WifiScan            [b70d7026a6344f9fe376f1f334d0cdfe]
+              multisense_ros/DeviceInfo         [c6474ecff79a7f51e0a82ca43d0cf444]
+              multisense_ros/DeviceStatus       [2114c900161a6607a8d4a04b3cecd16b]
+              multisense_ros/RawCamCal          [1b8c86de8eb033489e8e49fb5532702e]
+              multisense_ros/RawCamConfig       [cfc6caf0d17e5d50531b927f32fd6a90]
+              multisense_ros/RawImuData         [bab971dfc7138ffa0d1374504403ac83]
+              multisense_ros/RawLidarCal        [a40a2eda974181d5f5f21ff840e3a6ff]
+              multisense_ros/StampedPps         [ee2f8d6ea6dc30440398fb554199fa0d]
+              nav_msgs/Odometry                 [cd5e73d190d741a2f92e81eda573aca7]
+              omnimapper_msgs/StampedPointCloud [1b03a68f5ae3a16c772cba1df26856e5]
+              ouster_ros/PacketMsg              [e6969c522801b12a3d7e42e08f455e9e]
+              sensor_msgs/CameraInfo            [c9a58c1b0b154e0e6da7578cb991d214]
+              sensor_msgs/CompressedImage       [8f7a12909da2c9d3332d540a0977563f]
+              sensor_msgs/Image                 [060021388200f6f0f447d0fcd9c64743]
+              sensor_msgs/Imu                   [6a62c6daae103f4ff57a132d6f95cec2]
+              sensor_msgs/Joy                   [5a9ea5f83505693b71e785041e67a8bb]
+              sensor_msgs/PointCloud2           [1158d486dd51d683ce2f1be655c3c181]
+              std_msgs/Time                     [cd7166c74c552c311fbcc2fe5a7bc289]
+              tf2_msgs/TFMessage                [94810edda583a504dfda3829e70d7eec]
+topics:       
+              /chinook/assembled_cloud                                  2952 msgs    : omnimapper_msgs/StampedPointCloud
+              /chinook/boson/camera_info                               17069 msgs    : sensor_msgs/CameraInfo           
+              /chinook/boson/image_raw                                 17068 msgs    : sensor_msgs/Image                
+              /chinook/cmd_vel                                        137982 msgs    : geometry_msgs/Twist              
+              /chinook/husky_velocity_controller/odom                  17070 msgs    : nav_msgs/Odometry                
+              /chinook/imu/data                                       213399 msgs    : sensor_msgs/Imu                  
+              /chinook/joy                                            138280 msgs    : sensor_msgs/Joy                  
+              /chinook/mac80211/scan                                     310 msgs    : mac80211_msgs/WifiScan           
+              /chinook/multisense/calibration/device_info                  1 msg     : multisense_ros/DeviceInfo        
+              /chinook/multisense/calibration/raw_cam_cal                  1 msg     : multisense_ros/RawCamCal         
+              /chinook/multisense/calibration/raw_cam_config               1 msg     : multisense_ros/RawCamConfig      
+              /chinook/multisense/calibration/raw_lidar_cal                1 msg     : multisense_ros/RawLidarCal       
+              /chinook/multisense/depth/camera_info                     3342 msgs    : sensor_msgs/CameraInfo           
+              /chinook/multisense/depth/compressedDepth                 3341 msgs    : sensor_msgs/CompressedImage      
+              /chinook/multisense/imu/accelerometer                   168008 msgs    : multisense_ros/RawImuData        
+              /chinook/multisense/imu/accelerometer_vector            168008 msgs    : geometry_msgs/Vector3Stamped     
+              /chinook/multisense/imu/gyroscope                       701174 msgs    : multisense_ros/RawImuData        
+              /chinook/multisense/imu/gyroscope_vector                702285 msgs    : geometry_msgs/Vector3Stamped     
+              /chinook/multisense/imu/imu_data                        858362 msgs    : sensor_msgs/Imu                  
+              /chinook/multisense/imu/magnetometer                     17062 msgs    : multisense_ros/RawImuData        
+              /chinook/multisense/imu/magnetometer_vector              17062 msgs    : geometry_msgs/Vector3Stamped     
+              /chinook/multisense/left/camera_info                     17070 msgs    : sensor_msgs/CameraInfo           
+              /chinook/multisense/left/image_rect_color/camera_info    17071 msgs    : sensor_msgs/CameraInfo           
+              /chinook/multisense/left/image_rect_color/compressed     17070 msgs    : sensor_msgs/CompressedImage      
+              /chinook/multisense/lidar_points2                        68284 msgs    : sensor_msgs/PointCloud2          
+              /chinook/multisense/pps                                   1707 msgs    : std_msgs/Time                    
+              /chinook/multisense/right/camera_info                    17070 msgs    : sensor_msgs/CameraInfo           
+              /chinook/multisense/right/image_rect/camera_info         17071 msgs    : sensor_msgs/CameraInfo           
+              /chinook/multisense/right/image_rect/compressed          17070 msgs    : sensor_msgs/CompressedImage      
+              /chinook/multisense/stamped_pps                           1707 msgs    : multisense_ros/StampedPps        
+              /chinook/multisense/status                                1707 msgs    : multisense_ros/DeviceStatus      
+              /chinook/odom                                            34142 msgs    : nav_msgs/Odometry                
+              /chinook/ouster/imu_packets                             169940 msgs    : ouster_ros/PacketMsg             
+              /chinook/ouster/lidar_packets                           490659 msgs    : ouster_ros/PacketMsg             
+              /chinook/ouster/points                                   15967 msgs    : sensor_msgs/PointCloud2          
+              /diagnostics_agg                                           512 msgs    : diagnostic_msgs/DiagnosticArray  
+              /tf                                                     331161 msgs    : tf2_msgs/TFMessage               
+              /tf_static                                                   6 msgs    : tf2_msgs/TFMessage
+
+
+####################################
+A brief description of available topics:
+
+/chinook/assembled_cloud:
+This is an internal data type used by our mapping system, and is probably not useful to other groups. The data type is composed of a point cloud, together with the odometric pose information of the robot when the point cloud was captured. This can be re-created out of the /chinook/ouster/points topic and TF.
+
+/chinook/boson/camera_info
+/chinook/boson/image_raw:
+These are thermal IR image and calibration information collected from the FLIR Boson camera. This topic is uncompressed as the JPEG compressor doesn't work with 16 bit depth images, and the alternative compressors are too slow which resulted in low frame rates.
+
+/chinook/cmd_vel:
+Linear and angular velocity sent to robot controller from joystick handler
+
+/chinook/husky_velocity_controller/odom:
+Low level odometry feedback from Husky platform
+
+/chinook/imu/data:
+Raw IMU accelerations and angular velocities observed on the Microstrain GX5-25
+
+/chinook/joy:
+Joystick controls from teleoperation
+
+/chinook/mac80211/scan:
+A list of observed WiFi stations and their associated signal strengths
+
+/chinook/multisense/calibration/device_info
+/chinook/multisense/calibration/raw_cam_cal
+/chinook/multisense/calibration/raw_cam_config
+/chinook/multisense/calibration/raw_lidar_cal:
+Calibration information provided by the multisense
+
+/chinook/multisense/depth/camera_info
+/chinook/multisense/depth/compressedDepth:
+Depth image captured from stereo vision on the MultiSense. This was recorded compressed. Due to the lower frame-rate of the compressor available on 16 bit depth images, the recorded frame rate is lower (~1Hz) here than the left and right images
+
+/chinook/multisense/imu/accelerometer
+/chinook/multisense/imu/accelerometer_vector
+/chinook/multisense/imu/gyroscope
+/chinook/multisense/imu/gyroscope_vector
+/chinook/multisense/imu/imu_data
+/chinook/multisense/imu/magnetometer
+/chinook/multisense/imu/magnetometer_vector:
+Output from other sensors on the MultiSense. We haven't used these yet, but they are recorded for people to use if they are interested.
+
+/chinook/multisense/left/camera_info
+/chinook/multisense/left/image_rect_color/camera_info
+/chinook/multisense/left/image_rect_color/compressed
+/chinook/multisense/right/camera_info
+/chinook/multisense/right/image_rect/camera_info
+/chinook/multisense/right/image_rect/compressed:
+Calibration and image data from left and right cameras of the MultiSense
+
+/chinook/multisense/lidar_points2:
+Point cloud data from MultiSense Hokuyo LiDAR. This should be one cloud per scan.
+
+/chinook/multisense/pps
+/chinook/multisense/stamped_pps:
+Pulse-per-second message output from MultiSense. Not currently useful as the corresponding hardware signal is unused.
+
+/chinook/multisense/status:
+Status messages from multisense
+
+/chinook/odom:
+Filtered odometry
+
+/chinook/ouster/imu_packets
+/chinook/ouster/lidar_packets:
+Raw data from the ouster. This can be used, together with the calibration information for the Ouster, to re-project the point cloud from Ouster
+
+/chinook/ouster/points:
+The point cloud captured on the ouster as it was collected in the actual run. This corresponds to approximately a 10Hz cloud- one rotation per cloud.
+
+/diagnostics_agg
+/tf
+/tf_static:
+Platform diagnostics and sensor transforms information.
+
+###############################################
+
+USAGE:
+First, download the publich catkin workspace from : 
+git clone https://jgrogers@bitbucket.org/jgrogers/stix_ws.git
+
+Build:
+cd stix_ws
+catkin init
+catkin config --extend YOUR_ROS_CATKIN_WORKSPACE
+catkin build -c
+source devel/setup.bash
+
+Go to the directory where you have placed the tunnel circuit bag files
+cd ~/data/tunnel_ckt
+roslaunch tunnel_ckt_launch remap.launch bag:=sr_B_route2.bag reproject:=false rate:=2.0 odom_only:=true course:=sr config:=B
+
+Arguments:
+
+"bag" : Non-optional argument, specify the bag file to open for this run. This should be specified as a relative path to where CWD where roslaunch is started (it is composed with PWD)
+"name" : Default "chinook" matches robot name used in dataset collection. 
+"reproject" : Optionally reproject ouster point cloud using new settings. We may provide our ouster projection node at a later date; otherwise, the user may substitute their own or find another alternative.
+"reodom" : Attempt to re-generate the platform odometry using joystick commands, to correct poor recorded odometry in configuration A bagfiles (not provided). This is experimental and should not be needed for configuration B runs.
+"rate": Bag play rate multiplier.
+"mark_artifacts": When set to true, the subt_scoring node will be run in marking mode, which will provide the user with an interface to code the location of artifacts for automatic scoring/ RMSE calculation. Artifacts are already coded in the coded_artifacts directory; however, users may wish to improve the coding as some artifacts were missed.
+"bag_out": If true, capture an output bag file. Currently configured with our internal mapping outputs. Users should modify the rosbag record node to capture relevant data.
+"course": should be either "ex" for experimental, or "sr" for safety research
+"config": can be either A or B. Note that all bag files were taken in configuration B (for now).
+
+"omnimapper"
+"cartographer"
+"odom_only"
+ These parameters optionally switch on up to one mapping system. The user should be able to source into a catkin workspace from the "subt hello world" virtual challenge codebase to get Cartographer, or set it up on their own. "odom_only" will give the results of using no mapping system by substituting a static map to odom transform. Each of these options configures the subt_scoring node to write an RMSE output file.
+
+Scoring and RMSE computation are automatically performed by the subt_scoring node, assuming the user's mapping approach provides the map -> chinook/odom transform. 
+The node should automatically compute the DARPA frame to map frame correction by aligning to the fiducial landmarks.
+

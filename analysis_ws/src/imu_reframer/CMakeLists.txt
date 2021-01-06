@@ -140,6 +140,7 @@ add_executable(tf_vel_to_odom_node src/tf_vel_to_odom_node.cpp)
 add_executable(tf_to_odom_node src/tf_to_odom_node.cpp)
 add_executable(tf_remap_to_tf_transform_inv_node src/tf_remap_to_tf_transform_inv.cpp)
 add_executable(tf_topic_vel_to_odom_node src/tf_topic_vel_to_odom_node.cpp)
+add_executable(tunnel_odom_repeat_filter_node src/tunnel_odom_repeat_filter_node.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -172,6 +173,9 @@ target_link_libraries(tf_remap_to_tf_transform_inv_node
 target_link_libraries(tf_topic_vel_to_odom_node
   ${catkin_LIBRARIES}
 )
+target_link_libraries(tunnel_odom_repeat_filter_node
+  ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##
@@ -189,7 +193,7 @@ target_link_libraries(tf_topic_vel_to_odom_node
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-install(TARGETS ${PROJECT_NAME}_node odom_repeat_filter_node distance_traveled_node tf_vel_to_odom_node tf_to_odom_node tf_remap_to_tf_transform_inv_node tf_topic_vel_to_odom_node
+install(TARGETS ${PROJECT_NAME}_node odom_repeat_filter_node distance_traveled_node tf_vel_to_odom_node tf_to_odom_node tf_remap_to_tf_transform_inv_node tf_topic_vel_to_odom_node tunnel_odom_repeat_filter_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

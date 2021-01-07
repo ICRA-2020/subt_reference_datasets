@@ -23,6 +23,7 @@ RUN sudo bin/sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -
   && sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 RUN sudo apt-get update \
   && sudo apt-get install -y \
+  python-rosdep \
   ros-melodic-ros-base \
   ros-melodic-rviz \
   && sudo apt-get clean \
@@ -44,6 +45,7 @@ RUN sudo apt-get update \
   libprotobuf-dev \
   libsuitesparse-dev \
   libturbojpeg0-dev \
+  ninja-build \
   protobuf-compiler \
   python-catkin-tools \
   python-minimal \
@@ -52,6 +54,8 @@ RUN sudo apt-get update \
   python-rosinstall-generator \
   python-wstool \
   python3-numpy \
+  ros-melodic-apriltag \
+  ros-melodic-apriltag-ros \
   ros-melodic-camera-info-manager \
   ros-melodic-cv-bridge \
   ros-melodic-eigen-conversions \
@@ -63,9 +67,14 @@ RUN sudo apt-get update \
   ros-melodic-random-numbers \
   ros-melodic-static-transform-mux \
   ros-melodic-tf-conversions \
+  stow \
   xterm \
   && sudo apt-get clean
 
 # Set Working Directory
 WORKDIR /home/developer
+
+# Fix an issue with FLANN and Lz4 with LeGO-LOAM
+RUN sudo sed -i 's\flann/ext/lz4.h\lz4.h\' /usr/include/flann/util/serialization.h \
+  && sudo sed -i 's\flann/ext/lz4hc.h\lz4hc.h\' /usr/include/flann/util/serialization.h
 

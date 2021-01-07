@@ -81,7 +81,6 @@ RUN sudo sed -i 's\flann/ext/lz4.h\lz4.h\' /usr/include/flann/util/serialization
 # Clone/Update Repository
 RUN git clone https://git@bitbucket.org/jgrogers/subt_reference_datasets.git \
   && cd subt_reference_datasets \
-  && git checkout refactor \
   && wstool update -t analysis_ws/src \
   && rosdep install -y -r --from-paths analysis_ws/src --ignore-src --rosdistro melodic \
   && wstool update -t algorithm_ws/src \

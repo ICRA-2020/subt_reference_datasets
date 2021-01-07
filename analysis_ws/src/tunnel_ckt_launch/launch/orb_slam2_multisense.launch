@@ -1,13 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launch>
   <arg name="name" default="robot"/>
   <arg name="pointcloud_frame" default="map"/>
   <arg name="camera_frame" default="multisense/head"/>
   <arg name="left_camera_topic" default="/multisense/left/image_rect_mono"/>
   <arg name="right_camera_topic" default="/multisense/right/image_rect_mono"/>
-  <arg name="depth_topic" default="/multisense/depth"/>
-  <arg name="rgbd_mode" default="true"/> 
-  <node name="orb_slam2_rgbd" pkg="orb_slam2_ros"
-      type="orb_slam2_ros_rgbd" output="screen">
+  <arg name="depth_topic" default="/multisense/depth"/> 
+  <arg name="mode" default="stereo"/> 
+  <arg name="rgbd_mode" default="false"/>
+  <arg name="use_sim_time" value="true"/>
+  <node name="orb_slam2_$(arg mode)" pkg="orb_slam2_ros"
+      type="orb_slam2_ros_$(arg mode)" output="screen" required="true">
 
        <remap from="image_left/image_color_rect" to="$(arg left_camera_topic)" />
        <remap from="image_right/image_color_rect" to="$(arg right_camera_topic)" />
@@ -22,12 +25,44 @@
        <!-- static parameters -->
        <param name="load_map" type="bool" value="false" />
        <param name="map_file" type="string" value="map.bin" />
-       <param unless="$(arg rgbd_mode)" name="settings_file" type="string" value="$(find tunnel_ckt_launch)/config/orb_slam_2/MultisenseStereo.yaml" />
-       <param if="$(arg rgbd_mode)" name="settings_file" type="string" value="$(find tunnel_ckt_launch)/config/orb_slam_2/MultisenseRGBD.yaml" />
        <param name="voc_file" type="string" value="$(find orb_slam2_ros)/orb_slam2/Vocabulary/ORBvoc.txt" />
 
        <param name="pointcloud_frame_id" type="string" value="$(arg pointcloud_frame)" />
        <param name="camera_frame_id" type="string" value="$(arg camera_frame)" />
        <param name="min_num_kf_in_map" type="int" value="5" />
+       
+       <!-- ORB parameters -->
+       <param name="/ORBextractor/nFeatures" type="int" value="2000" />
+       <param name="/ORBextractor/scaleFactor" type="double" value="1.2" />
+       <param name="/ORBextractor/nLevels" type="int" value="8" />
+       <param name="/ORBextractor/iniThFAST" type="int" value="12" />
+       <param name="/ORBextractor/minThFAST" type="int" value="3" />
+
+       <!-- Camera parameters -->
+       <!-- Camera frames per second -->
+       <param name="camera_fps" type="int" value="10" />
+       <!-- Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale) -->
+       <param name="camera_rgb_encoding" type="bool" value="1" />
+       <!-- Close/Far threshold. Baseline times. -->
+       <param name="ThDepth" type="double" value="30.0" />
+       <!-- Deptmap values factor (what pixel value in the depth image corresponds to 1m) -->
+       <param name="depth_map_factor" type="double" value="1.0" />
+
+        <!-- Camera calibration parameters -->
+        <!--If the node should wait for a camera_info topic to take the camera calibration data-->
+       <param name="load_calibration_from_cam" type="bool" value="false" />
+       <!-- Camera calibration and distortion parameters (OpenCV) -->
+      <param name="camera_fx" type="double" value="600.7606201171875" />
+      <param name="camera_fy" type="double" value="602.1273193359375" />
+      <param name="camera_cx" type="double" value="530.7537841796875" />
+      <param name="camera_cy" type="double" value="272.0735778808594" />
+       <!-- Camera calibration and distortion parameters (OpenCV) -->
+      <param name="camera_k1" type="double" value="-0.20848242938518524" />
+      <param name="camera_k2" type="double" value="0.1229957863688469" />
+      <param name="camera_p1" type="double" value="0.0005989724886603653" />
+      <param name="camera_p2" type="double" value="-0.00030653737485408783" />
+      <param name="camera_k3" type="double" value="0.0046302578411996365" />
+      <!-- IR projector baseline times fx (aprox.) -->
+      <param name="camera_baseline" type="double" value="42.0532434082" />
   </node>
 </launch>

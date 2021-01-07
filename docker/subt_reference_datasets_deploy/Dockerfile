@@ -68,6 +68,7 @@ RUN sudo apt-get update \
   ros-melodic-static-transform-mux \
   ros-melodic-tf-conversions \
   stow \
+  wget \
   xterm \
   && sudo apt-get clean
 

@@ -1,5 +1,5 @@
 #/bin/bash
-# Bags are run at half speed due to compression
+# Bags are run at 1/2 speed due to compression
 . ../../algorithm_ws/devel/setup.bash
 
 # UGV A Level 1
@@ -7,6 +7,8 @@
   roslaunch urban_ckt_launch remap.launch bag:=a_lvl_1.bag cartographer:=true noodom:=true odom_mode:=odom odom_config_1:=true course:=alpha config:=2 rviz:=false interval:=0.2 initialize_flat:=true multisense:=false rate:=0.5
   # Cartographer No Odom:
   roslaunch urban_ckt_launch remap.launch bag:=a_lvl_1.bag cartographer:=true noodom:=true odom_mode:=imu odom_config_1:=true course:=alpha config:=2 rviz:=false initialize_flat:=true multisense:=false rate:=0.5
+  # LeGO LOAM
+  roslaunch urban_ckt_launch remap.launch bag:=a_lvl_1.bag bor_legoloam:=true course:=alpha config:=2 rviz:=false initialize_flat:=true multisense:=false rate:=0.5
   # Odom
   roslaunch urban_ckt_launch remap.launch bag:=a_lvl_1.bag odom_only:=true course:=alpha config:=2 rviz:=false initialize_flat:=true rate:=0.5
     

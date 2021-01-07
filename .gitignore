@@ -2,4 +2,6 @@
 build/
 devel/
 logs/
+*.bag
+*.rmse
 kimera_new_ws/

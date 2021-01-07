@@ -96,6 +96,7 @@ catkin init
 catkin config --extend ../analysis_ws/devel --merge-devel --cmake-args -DCMAKE_BUILD_TYPE=Release
 catkin build
 ```
+> Note: If compiling LeGO-LOAM returns conflicting declaration errors between FLANN and Lz4, look at this potential fix: https://github.com/ethz-asl/lidar_align/issues/16#issuecomment-505393420  
 
 ```
 cd subt_reference_datasets

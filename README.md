@@ -7,7 +7,7 @@ These datasets were collected by the Army Research Laboratory on behalf of DARPA
 
 The SubT urban dataset consists of four ROS bag files which were recorded on our "GVRbot", which is a modified iRobot PackBot Explorer developed at the Ground Vehicle Systems Center (GVSC), formerly known as TARDEC. This robot is a tracked skid-steer chassis equipped with forward mounted flippers to assist with stair descent as well as traversing taller obstacles. The sensor loadout is similar to the Husky described below in the Tunnel section. The robot is equipped with an Ouster OS1-64 LiDAR mounted in an elevated placement to avoid self-occlusion. The robot is also equipped with a Multisense SL which provides a secondary LiDAR system as well as stereo vision and illumination. We have also added an SCD-30 CO2 sensor for the gas artifact. Unfortunately, the Thermal IR camera(s) mounted on the robots did not record useable data due to a compression parameter mistake.
 
-The message files used to handle the SCD-30 data can be found in the support code described in the tunnel section below. Note that it has been restructured somewhat since the Tunnel circuit to include an additional workspace to support the Kimera VIO analysis which is still a work in progress. There are now two workspaces under the subt_reference_datasets project. Users should probably only focus on the base_ws for now.
+The message files used to handle the SCD-30 data can be found in the support code described in the tunnel section below. Note that it has been restructured somewhat since the Tunnel circuit to include an additional workspace to support the Kimera VIO analysis which is still a work in progress. There are now two workspaces under the subt_reference_datasets project. Users should probably only focus on the algorithm_ws for now.
 
 On this release, the bag files are compressed with the lz4 option to greatly reduce their size for transmission. On our own analysis, decompressing them during playback is too slow, so they should be decompressed by the user via rosbag decompress prior to use.
 
@@ -61,8 +61,8 @@ git clone git@bitbucket.org:subtchallenge/subt_reference_datasets.git
 > Note: Downloads the workspace and requires working exclusively within the docker container.
 ```
 cd subt_reference_datasets/docker
-./build.bash subt_reference_datasets_devel/
-./run.bash subt_reference_datasets_devel/
+./build.bash subt_reference_datasets_deploy/
+./run.bash subt_reference_datasets_deploy/
 ```
 
 **Option 2:** Mount workspace inside of image:
@@ -76,31 +76,27 @@ cd other/subt_reference_datasets/
 Then follow the Native Installation instructions below.  
 
 ### Native Installation:  
-**Analysis Workspace Installation: Currently supported**  
 > Note: `YOUR_ROS_CATKIN_WORKSPACE` is typically `/opt/ros/melodic` if you are not extending another workspace.  
 ```
 cd subt_reference_datasets
 wstool update -t analysis_ws/src
-rosdep install -y -r --from-paths base_ws/src --ignore-src --rosdistro melodic
+rosdep install -y -r --from-paths algorithm_ws/src --ignore-src --rosdistro melodic
 cd analysis_ws
 catkin init
 catkin config --extend YOUR_ROS_CATKIN_WORKSPACE --merge-devel --cmake-args -DCMAKE_BUILD_TYPE=Release
 catkin build
 ```
 
-**Base Workspace Installation: Currently supported**  
-> Note: `YOUR_ROS_CATKIN_WORKSPACE` is typically `/opt/ros/melodic` if you are not extending another workspace.  
 ```
 cd subt_reference_datasets
-wstool update -t base_ws/src
-rosdep install -y -r --from-paths base_ws/src --ignore-src --rosdistro melodic
-cd base_ws
+wstool update -t algorithm_ws/src
+rosdep install -y -r --from-paths algorithm_ws/src --ignore-src --rosdistro melodic
+cd algorithm_ws
 catkin init
 catkin config --extend ../analysis_ws/devel --merge-devel --cmake-args -DCMAKE_BUILD_TYPE=Release
 catkin build
 ```
 
-**Kimera Workspace Installation: Currently supported**  
 ```
 cd subt_reference_datasets
 wstool update -t kimera_ws/src
@@ -112,7 +108,7 @@ catkin build
 ```
 
 ### Experimentation
-Source the workspace containing the algorithms for experimentation: i.e. `. ~/subt_reference_datasets/base_ws/devel/setup.bash` or `. ~/subt_reference_datasets/kimera_ws/devel/setup.bash`
+Source the workspace containing the algorithms for experimentation: i.e. `. ~/subt_reference_datasets/algorithm_ws/devel/setup.bash` or `. ~/subt_reference_datasets/kimera_ws/devel/setup.bash`
 Go to the directory where you have placed the tunnel circuit bag files, in this case the bags are in the `data` folder sorted into `tunnel_ckt` and `urban_ckt` folders
 ```
 cd ~/data/tunnel_ckt
@@ -188,9 +184,9 @@ The STIX datasets were collected with a refurbished iRobot Packbot Explorer, whi
 
 The robot is equipped with an Ouster OS1-64 (3D LiDAR) , a FLIR Tau2 thermal IR camera, a Carnegie Robotics Multisense SL stereo camera + illuminators + spinning LiDAR, and a Microstrain GX5-25 IMU. The robot was also equipped with a Point Grey Chameleon which was a spare device and not used in this data collection. Data was saved onto an SSD in the computing payload.
 
-![Robot Top View](GVRBotTopCallouts.jpg)
+![Robot Top View](images/GVRBotTopCallouts.jpg)
 
-![Robot Front View](GVRBotFrontCallouts.jpg)
+![Robot Front View](images/GVRBotFrontCallouts.jpg)
 
 ### Software
 The data sets were collected using ROS drivers for sensor components where available. Imagery was collected in compressed or compressedDepth format to reduce file sizes. These can be reconstructed to their raw form through the use of image_transport "republish" ROS nodes, or by using image_transport when subscribing to the topics.

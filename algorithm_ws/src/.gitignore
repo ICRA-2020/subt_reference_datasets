@@ -1,6 +1,7 @@
 abseil-cpp
 cartographer_ws
 cartographer_ros
+gtsam
 msckf_vio
 orb_slam_2_ros
 vins_fusion

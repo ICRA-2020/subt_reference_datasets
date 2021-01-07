@@ -7,13 +7,17 @@
     uri: https://github.com/googlecartographer/cartographer_ros.git
     version: 2325bde3d87527253987863571f6f4d635012a9c
 - git:
+    local-name: gtsam
+    uri: https://github.com/borglab/gtsam.git
+    version: 342f30d148fae84c92ff71705c9e50e0a3683bda
+- git:
     local-name: msckf_vio
     uri: https://github.com/KumarRobotics/msckf_vio.git
     version: e3a39a95b57da376924aa22b46637b60f68f504c
 - git:
     local-name: orb_slam_2_ros
     uri: https://github.com/appliedAI-Initiative/orb_slam_2_ros.git
-    version: 95c9e23268cb5f8eb3057948c4ace4d088e9a539
+    version: 6ac1abd7369dc8c9fe49741ae98a8b934e3af6c4
 - git:
     local-name: vins_fusion
     uri: https://github.com/HKUST-Aerial-Robotics/VINS-Fusion.git

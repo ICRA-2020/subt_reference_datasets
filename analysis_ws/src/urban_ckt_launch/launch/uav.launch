@@ -22,7 +22,8 @@
   <arg name="openvslam" default="false"/>
 
   <param name="use_sim_time" value="true"/>
-  <node pkg="rosbag" type="play" name="bagplay" required="true" args="$(env PWD)/$(arg bag) --start $(arg start) --rate $(arg rate) --clock" launch-prefix="xterm -e"/>
+  <node if="$(arg rviz)" pkg="rosbag" type="play" name="bagplay" required="true" args="$(env PWD)/$(arg bag) --start $(arg start) --rate $(arg rate) --clock" launch-prefix="xterm -e"/>
+  <node unless="$(arg rviz)" pkg="rosbag" type="play" name="bagplay" required="true" args="$(env PWD)/$(arg bag) --start $(arg start) --rate $(arg rate) --clock"/>
  
   <!-- Required TFs -->
   <node pkg="tf2_ros" type="static_transform_publisher" name="camera_link_to_body" args="0.096 0 -0.068 0 0 0 /body /realsense_link"/>

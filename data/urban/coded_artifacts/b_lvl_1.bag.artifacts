@@ -1,0 +1,15 @@
+fiducial_24 1582595608.421728 108.119064 153.545740 sherman/multisense/left_camera_optical_frame -1.455285 -0.413315 2.015922 sherman/base 2.315922 1.490285 0.681315
+fiducial_25 1582595599.422296 472.371803 98.550611 sherman/multisense/left_camera_optical_frame -0.452286 -1.430870 4.772992 sherman/base 5.072992 0.487286 1.698870
+fiducial_26 1582595599.922296 677.417091 288.146153 sherman/multisense/left_camera_optical_frame 1.233508 0.131574 4.772992 sherman/base 5.072992 -1.198508 0.136426
+fiducial_27 1582595644.522961 220.839711 44.195329 sherman/multisense/left_camera_optical_frame -1.066283 -0.791897 2.015922 sherman/base 2.315922 1.101283 1.059897
+gas 1582595728.614983 460 389 sherman/multisense/left_camera_optical_frame -0.130316 0.227566 1.128916 sherman/base 1.428916 0.165316 0.040434
+phone 1582595797.519323 475 36 sherman/multisense/left_camera_optical_frame -0.170046 -0.771748 1.898032 sherman/base 2.198032 0.205046 1.039748
+backpack 1582595867.617040 520 134 sherman/multisense/left_camera_optical_frame -0.058423 -1.151766 4.844231 sherman/base 5.144231 0.093423 1.419766
+survivor 1582595963.427842 474 236 sherman/multisense/left_camera_optical_frame -0.318678 -0.216461 3.489929 sherman/base 3.789929 0.353678 0.484461
+gas 1582596100.022059 642 431 sherman/multisense/left_camera_optical_frame 0.192536 0.266201 0.971747 sherman/base 1.271747 -0.157536 0.001799
+vent 1582596201.231508 264 93 sherman/multisense/left_camera_optical_frame -1.215431 -0.827232 2.682343 sherman/base 2.982343 1.250431 1.095232
+backpack 1582596288.230038 456 75 sherman/multisense/left_camera_optical_frame -0.337894 -0.937536 2.762242 sherman/base 3.062242 0.372894 1.205536
+phone 1582596357.033750 597 284 sherman/multisense/left_camera_optical_frame 0.365826 0.062713 3.033303 sherman/base 3.333303 -0.330826 0.205287
+vent 1582596504.735903 636 77 sherman/multisense/left_camera_optical_frame 0.902989 -1.615439 4.808347 sherman/base 5.108347 -0.867989 1.883439
+survivor 1582596623.436564 430 245 sherman/multisense/left_camera_optical_frame -0.935198 -0.260313 5.595922 sherman/base 5.895922 0.970198 0.528313
+backpack 1582596753.939518 659 245 sherman/multisense/left_camera_optical_frame 2.381069 -0.487037 10.469789 sherman/base 10.769789 -2.346069 0.755037

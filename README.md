@@ -54,10 +54,14 @@ https://subt-data.s3.amazonaws.com/SubT_Tunnel_Ckt/sr_B_route2.bag (16.3 GB)
 ## Usage:
 First, download the public catkin workspace from: 
 
+**Option 1:** Download the complete docker image. After completing this set, you can skip to the Examples section.
+`docker pull acschang/subt_reference_datasets:urban`
+
+**Option 2:** Download the workspace. After completing this step, please continue by completing either a docker or native installation.
 git clone git@bitbucket.org:subtchallenge/subt_reference_datasets.git
 
 ### Docker Install:  
-**Option 1:** Clone workspace inside of image
+**Option 1:** Build the docker image: clone workspace inside of image
 > Note: Downloads the workspace and requires working exclusively within the docker container.
 ```
 cd subt_reference_datasets/docker
@@ -65,7 +69,7 @@ cd subt_reference_datasets/docker
 ./run.bash subt_reference_datasets_deploy/
 ```
 
-**Option 2:** Mount workspace inside of image:
+**Option 2:** Build the docker image: mount workspace inside of image:
 > Note: Allows one to modify files outside of the docker container for use in the docker container.
 ```
 cd subt_reference_datasets/docker
@@ -108,9 +112,26 @@ catkin config --extend ../analysis_ws/devel --merge-devel --cmake-args -DCMAKE_B
 catkin build
 ```
 
+### Examples
+There are some example test cases included in the repository. These examples are located in the `data/tunnel` and `data/urban` directories. There are scripts that may be run to download a few bags from AWS to get you started (`sr_B_route1.bag`, `a_lvl_1.bag`, and `a_lvl_1_uav.bag`). There are also scripts compatible with these bags that run all included algorithms on the downloaded bags. A complete list of commands for each circuit is included in the `run_commands.txt` file in each directory. These commands require the associated bags be **decompressed** prior to running these commands as the RTF is set to 1.
+
+#### Tunnel Example
+```
+cd data/tunnel
+. download_sr_b_r1.sh
+. sample_run.sh
+```
+
+#### Urban Example
+```
+cd data/urban
+. download_alpha_1_ugv_uav.sh
+. sample_run.sh
+```
+
 ### Experimentation
 Source the workspace containing the algorithms for experimentation: i.e. `. ~/subt_reference_datasets/algorithm_ws/devel/setup.bash` or `. ~/subt_reference_datasets/kimera_ws/devel/setup.bash`
-Go to the directory where you have placed the tunnel circuit bag files, in this case the bags are in the `data` folder sorted into `tunnel_ckt` and `urban_ckt` folders
+Go to the directory where you have placed the tunnel circuit bag files, in this case the bags are in the `data` folder sorted into `tunnel` and `urban` folders
 ```
 cd ~/data/tunnel_ckt
 roslaunch tunnel_ckt_launch remap.launch bag:=sr_B_route2.bag rate:=2.0 odom_only:=true course:=sr config:=B
@@ -119,7 +140,9 @@ Arguments:
 
 "bag" : Non-optional argument, specify the bag file to open for this run. This should be specified as a relative path to where CWD where roslaunch is started (it is composed with PWD)
 
-"name" : Default "chinook" matches robot name used in dataset collection. 
+"rviz" : Boolean parameter determining whether to launch the bag in a separate xterm window and launch RViz or to run everything in the current terminal and not launch RViz.
+
+"name" : Default "chinook", "sherman", or "uav" matches robot name used in dataset collection. 
 
 "reproject" : Optionally reproject ouster point cloud using new settings. We may provide our ouster projection node at a later date; otherwise, the user may substitute their own or find another alternative.
 

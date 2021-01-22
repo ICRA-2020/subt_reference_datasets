@@ -28,6 +28,9 @@ https://subt-data.s3.amazonaws.com/SubT_Urban_Ckt/b_lvl_2.bag
 Support data for the analysis from the ICRA paper is being processed and will be available at this link:
 https://subt-data.s3.amazonaws.com/SubT_Urban_Ckt/support.tgz
 
+Full PointCloud:
+https://bitbucket.org/subtchallenge/urban_ground_truth/src/master/
+
 ## Tunnel Circuit Dataset:
 
 The SubT tunnel dataset consists of three ROS bag files which were recorded on our Clearpath Husky robot during teleoperation within the Safety Research (SR) and Experimental (EX) courses. 
@@ -50,6 +53,9 @@ https://subt-data.s3.amazonaws.com/SubT_Tunnel_Ckt/ex_B_route1.bag (33 GB)
 https://subt-data.s3.amazonaws.com/SubT_Tunnel_Ckt/sr_B_route1.bag (19.6 GB)
 
 https://subt-data.s3.amazonaws.com/SubT_Tunnel_Ckt/sr_B_route2.bag (16.3 GB)
+
+Full PointCloud:
+https://bitbucket.org/subtchallenge/tunnel_ground_truth/src/master/
 
 ## Usage:
 First, download the public catkin workspace from: 

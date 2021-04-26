@@ -25,6 +25,12 @@ https://subt-data.s3.amazonaws.com/SubT_Urban_Ckt/b_lvl_1.bag
 Beta course, lower floor. Goes pretty far to get to stairs. Ouster data not available due to equipment failure (DC converter):
 https://subt-data.s3.amazonaws.com/SubT_Urban_Ckt/b_lvl_2.bag
 
+Alpha course UAV:
+https://subt-data.s3.amazonaws.com/SubT_Urban_Ckt/a_lvl_1_uav.bag
+
+Beta course UAV:
+https://subt-data.s3.amazonaws.com/SubT_Urban_Ckt/b_lvl_1_uav.bag
+
 Support data for the analysis from the ICRA paper is being processed and will be available at this link:
 https://subt-data.s3.amazonaws.com/SubT_Urban_Ckt/support.tgz
 
